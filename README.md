@@ -1,58 +1,97 @@
-# create-svelte
+# README
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Dialog-Kit
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+`Dialog-Kit` is a library specifically designed for SvelteKit that simplifies creating interactive, customizable dialog boxes in your web applications.
 
-## Creating a project
+### Installation
 
-If you're seeing this, you've probably already done this step. Congrats!
+You can install `Dialog-Kit` using npm, pnpm or yarn:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+**npm:**
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm install dialog-kit
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
+**pnpm:**
 
 ```bash
-npm run package
+pnpm add dialog-kit
 ```
 
-To create a production version of your showcase app:
+**yarn:**
 
 ```bash
-npm run build
+yarn add dialog-kit
 ```
 
-You can preview the production build with `npm run preview`.
+### Usage
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+To use `Dialog-Kit`, first import the library:
 
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+```javascript
+import { DialogActions, DialogTypes, DialogTheme } from '$lib/types/dialog.js';
+import { setLoader, resetLoader } from 'dialog-kit';
 ```
+
+#### Displaying a Loader
+
+`Dialog-Kit` allows you to display a simple loader using the `setLoader` function with only the first parameter:
+
+```javascript
+setLoader(true);
+```
+
+To customize the color of the loader, you can use the second parameter:
+
+```javascript
+setLoader(true, 'blue');
+```
+
+#### Displaying a Dialog Box
+
+To display a dialog box, you can use the third parameter of the `setLoader` function, which is an object allowing for the customization of the dialog box.
+
+Here is an example of how `setLoader` can be used to display a dialog box:
+
+```javascript
+setLoader(true, 'red', {
+  title: 'Error',
+  cancel: 'Cancel',
+  message: 'Something went wrong',
+  theme: DialogTheme.DARK,
+  type: DialogTypes.ERROR,
+  [DialogActions.ONCLOSE]: () => {
+    console.log('Dialog closed');
+  },
+});
+```
+
+To reset the loader and dialog box to their initial state, use the `resetLoader` function:
+
+```javascript
+resetLoader();
+```
+
+### Customization
+
+The dialog box can be fully customized via the `popUp` object passed to `setLoader`. The following properties can be set:
+
+- `title` (string): The title of the dialog box.
+- `cancel` (string): The text of the cancel button.
+- `message` (string): The message of the dialog box.
+- `theme` (DialogTheme): The theme of the dialog box. Can be `DialogTheme.DARK` or `DialogTheme.LIGHT`.
+- `type` (DialogTypes): The type of dialog box. Can be `DialogTypes.ERROR`, `DialogTypes.SUCCESS`, `DialogTypes.INFO` or `DialogTypes.WARNING`.
+- `button` (string): The text of the confirmation button.
+- `confirmButton` (string): The text of the confirm button.
+- `middleButton` (string): The text of the middle button.
+- `middleButtonColor` (string): The color of the middle button.
+- `confirmButtonColor` (string): The color of the confirm button.
+- `cancelButtonColor` (string): The color of the cancel button.
+- `verticalConfirm` (boolean): Indicates whether the confirm buttons should be displayed vertically.
+- `[DialogActions.ONCLOSE]` (function): The function to execute when the dialog box is closed.
+- `[DialogActions.ONCONFIRM]` (function): The function to execute when the confirm button is clicked.
+- `[DialogActions.ONMIDDLE]` (function): The function to execute when the middle button is clicked.
+
+Note that all properties are optional and have default values if not specified.
