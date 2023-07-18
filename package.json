@@ -1,6 +1,6 @@
 {
-	"name": "@loganwillaumez/dialog-kit",
-	"version": "0.0.1",
+	"name": "@willog/dialog-kit",
+	"version": "1.0.0",
 	"description": "A reusable Svelte component library, specializing in creating interactive dialogues (such as confirmations, errors, etc.). These dialogues come with customizable, interactive buttons and are optimized for use with SvelteKit.",
 	"keywords": [
 		"Svelte",
@@ -19,7 +19,7 @@
 		"name": "Willaumez Logan",
 		"url": "https://github.com/LoganWillaumez"
 	},
-	"repository": "github:rossrobino/components",
+	"repository": "https://github.com/LoganWillaumez/dialog-kit/tree/main",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
