@@ -13,11 +13,11 @@
 		"Customizable",
 		"Interactive Buttons"
 	],
-	"homepage": "https://components.robino.dev",
+	"homepage": "https://github.com/LoganWillaumez/dialog-kit",
 	"license": "MIT",
 	"author": {
 		"name": "Willaumez Logan",
-		"url": "https://robino.dev"
+		"url": "https://github.com/LoganWillaumez"
 	},
 	"repository": "github:rossrobino/components",
 	"scripts": {
