@@ -1,5 +1,5 @@
 {
-	"name": "@LoganWillaumez/dialog-kit",
+	"name": "@loganwillaumez/dialog-kit",
 	"version": "0.0.1",
 	"description": "A reusable Svelte component library, specializing in creating interactive dialogues (such as confirmations, errors, etc.). These dialogues come with customizable, interactive buttons and are optimized for use with SvelteKit.",
 	"keywords": [
