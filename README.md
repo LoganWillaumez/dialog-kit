@@ -40,8 +40,21 @@ yarn add @willog/dialog-kit
 Start by importing the `Dialog-Kit`:
 
 ```javascript
-import { DialogActions, DialogTypes, DialogTheme } from '$lib/types/dialog.js';
-import { setLoader, resetLoader } from 'dialog-kit';
+import { DialogActions, DialogTypes, DialogTheme } from '@willog/dialog-kit';
+import { setLoader, resetLoader } from '@willog/dialog-kit';
+```
+
+Next, it is required to incorporate the Dialog component into your project. To do this, you should place it in the layout.svelte file which is located at the root directory of your project. This will ensure the component is readily available across your entire application.
+
+```javascript
+  <script>
+      import {Dialog} from '@willog/dialog-kit'
+  </script>
+  
+  
+  <Dialog />
+
+  <slot></slot>
 ```
 
 ### Displaying a Loader
