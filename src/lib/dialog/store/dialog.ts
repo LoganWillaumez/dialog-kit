@@ -22,6 +22,7 @@ const initialDialog: Dialog = {
 const initialLoader = {
   showLoader: false,
   colorLoader: 'black',
+  opacityLoader: 0.5,
   popUp: initialDialog
 };
 
@@ -30,12 +31,14 @@ export const loader = writable(initialLoader);
 export const setLoader = (
   showLoader: boolean,
   colorLoader: string = 'black',
+  opacityLoader: number = 0.5,
   popUp: Partial<Dialog> = {}
 ): void => {
   resetLoader();
   loader.set({
     showLoader,
     colorLoader,
+    opacityLoader,
     popUp: {
       ...initialDialog,
       ...popUp

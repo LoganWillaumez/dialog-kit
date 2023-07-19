@@ -1,7 +1,11 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
   import { loader, resetLoader } from './store/dialog.js';
-  import { DialogActions, DialogTheme } from '$lib/types/dialog.js';
+  import { DialogActions, DialogTheme,DialogTypes } from '$lib/types/dialog.js';
+  import dialog_error from '$lib/images/dialog_error.svg';
+  import dialog_info from '$lib/images/dialog_info.svg';
+  import dialog_success from '$lib/images/dialog_success.svg';
+  import dialog_warning from '$lib/images/dialog_warning.svg';
 
   const handleAction = (action: DialogActions) => {
     const fn = $loader.popUp[action as keyof typeof $loader.popUp];
@@ -15,13 +19,16 @@
   $: theme = $loader.popUp.theme || DialogTheme.DARK;
 </script>
 
+<div id="{$loader.popUp.message && 'overlay'}" />
 {#if $loader.showLoader}
-  <div id="overlay" />
-  <div transition:fade={{ duration: 100 }} class="positioned">
-    {#if $loader.popUp.message}
+<div transition:fade={{ duration: 100 }} class="positioned">
+  {#if $loader.popUp.message}
       <div class={`popup popup--${$loader.popUp.type} popup--${theme}`}>
         <header class="flex-center gap-10">
-          <img class="popup_img" src={`/logo/dialog_${$loader.popUp.type}.svg`} alt="">
+          <img class="popup_img" src={$loader.popUp.type === DialogTypes.ERROR ? dialog_error 
+            : $loader.popUp.type === DialogTypes.SUCCESS ? dialog_success
+            : $loader.popUp.type === DialogTypes.INFO ? dialog_info
+            : dialog_warning} alt="">
           <p class="title">{$loader.popUp.title}</p>
         </header>
         <div class="popup_content flex-center gap-20">
@@ -42,7 +49,7 @@
       </div>
     {:else}
       <svg class="loaderSpin" viewBox="0 0 50 50">
-        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke="{$loader.colorLoader}" stroke-width="5" stroke-opacity="0.3"/>
+        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke="{$loader.colorLoader}" stroke-width="5" stroke-opacity="{$loader.opacityLoader}"/>
       </svg>
     {/if}
   </div>
@@ -51,7 +58,7 @@
 <style>
 
   :root {
-    --color-success: #2DDD28;
+    --color-success: #24B220;
     --color-warning: #ED942B;
     --color-info: #2B79ED;
     --color-error: #F46363;
@@ -79,6 +86,7 @@
   }
 
   .popup {
+    min-width: 200px;
     max-width: 350px;
     max-height: 350px;
     padding: 10px;
@@ -86,6 +94,7 @@
     color: white;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-family: 'Roboto', sans-serif;
   }
 
   .popup_header, .popup_content, .button__container {
@@ -99,6 +108,7 @@
   }
 
   .popup_content{
+    align-items: baseline;
     flex-direction: column;
   }
 
@@ -151,16 +161,16 @@
   }
 
   .popup__btn--success {
-    background-color: #2DDD28;
+    background-color: var(--color-success);
     color: white;
   }
 
   .popup__btn--success:hover {
-    background-color: #29c924;
+    background-color: #1D8C19;
   }
 
   .popup__btn--error {
-    background-color: #F46363;
+    background-color: var(--color-error);
     color: white;
   }
 
@@ -169,7 +179,7 @@
   }
 
   .popup__btn--warning {
-    background-color: #ED942B;
+    background-color: var(--color-warning);
     color: white;
   }
 
@@ -178,7 +188,7 @@
   }
 
   .popup__btn--info {
-    background-color: #2B79ED;
+    background-color: var(--color-info);
     color: white;
   }
 

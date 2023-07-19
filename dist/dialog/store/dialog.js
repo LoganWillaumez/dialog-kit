@@ -20,14 +20,16 @@ const initialDialog = {
 const initialLoader = {
     showLoader: false,
     colorLoader: 'black',
+    opacityLoader: 0.5,
     popUp: initialDialog
 };
 export const loader = writable(initialLoader);
-export const setLoader = (showLoader, colorLoader = 'black', popUp = {}) => {
+export const setLoader = (showLoader, colorLoader = 'black', opacityLoader = 0.5, popUp = {}) => {
     resetLoader();
     loader.set({
         showLoader,
         colorLoader,
+        opacityLoader,
         popUp: {
             ...initialDialog,
             ...popUp

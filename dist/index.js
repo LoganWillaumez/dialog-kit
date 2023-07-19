@@ -1,4 +1,5 @@
 import Dialog from './dialog/dialog.svelte';
+import * as dialogTypes from './types/dialog.js';
+import { setLoader } from './dialog/store/dialog.js';
 
-// Reexport your entry components here
-export { Dialog };
+export { dialogTypes, setLoader, Dialog };

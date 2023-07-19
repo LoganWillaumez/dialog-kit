@@ -1,6 +1,6 @@
 {
 	"name": "@willog/dialog-kit",
-	"version": "1.0.0",
+	"version": "0.0.4",
 	"description": "A reusable Svelte component library, specializing in creating interactive dialogues (such as confirmations, errors, etc.). These dialogues come with customizable, interactive buttons and are optimized for use with SvelteKit.",
 	"keywords": [
 		"Svelte",

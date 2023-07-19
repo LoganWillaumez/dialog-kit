@@ -8,10 +8,11 @@
 
 
     onMount(() => {
-        setLoader(true, undefined, {
-            type: DialogTypes.ERROR,
+        setLoader(true, undefined, undefined, {
+            title: "Info",
+            type: DialogTypes.INFO,
             message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae metus quis nisl rhoncus dapibus eu ac lacus",
-            confirmButton: 'confirm',
+            confirmButton: 'Confirm',
             [DialogActions.ONCONFIRM]() {
                 console.log('confirm');
             },
