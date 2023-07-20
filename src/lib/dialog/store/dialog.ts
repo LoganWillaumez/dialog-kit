@@ -16,7 +16,8 @@ const initialDialog: Dialog = {
   verticalConfirm: false,
   [DialogActions.ONCLOSE]: () => {},
   [DialogActions.ONCONFIRM]: () => {},
-  [DialogActions.ONMIDDLE]: () => {}
+  [DialogActions.ONMIDDLE]: () => {},
+  [DialogActions.ONCLICKOUTSIDE]: () => {}
 };
 
 const initialLoader = {

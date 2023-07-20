@@ -7,7 +7,8 @@ export declare enum DialogTypes {
 export declare enum DialogActions {
     ONCLOSE = "onClose",
     ONCONFIRM = "onConfirm",
-    ONMIDDLE = "onMiddle"
+    ONMIDDLE = "onMiddle",
+    ONCLICKOUTSIDE = "onClickOutside"
 }
 export type Dialog = {
     title: string;
@@ -25,6 +26,7 @@ export type Dialog = {
     [DialogActions.ONCLOSE]: () => void;
     [DialogActions.ONCONFIRM]: () => void;
     [DialogActions.ONMIDDLE]: () => void;
+    [DialogActions.ONCLICKOUTSIDE]: () => void;
 };
 export declare enum DialogTheme {
     DARK = "dark",

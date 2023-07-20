@@ -10,6 +10,7 @@ export var DialogActions;
     DialogActions["ONCLOSE"] = "onClose";
     DialogActions["ONCONFIRM"] = "onConfirm";
     DialogActions["ONMIDDLE"] = "onMiddle";
+    DialogActions["ONCLICKOUTSIDE"] = "onClickOutside";
 })(DialogActions || (DialogActions = {}));
 export var DialogTheme;
 (function (DialogTheme) {

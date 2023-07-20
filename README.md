@@ -35,27 +35,56 @@ pnpm add @willog/dialog-kit
 yarn add @willog/dialog-kit
 ```
 
-## Usage
+Usage
+Start by incorporating the Dialog component into your project. This can be done by placing the component in the +layout.svelte file which resides at the root directory of your project. Incorporating the component at this level ensures its availability across your entire application.
 
-Start by importing the `Dialog-Kit`:
+```javascript
+<script>
+  import {Dialog} from '@willog/dialog-kit'
+</script>
+
+<Dialog />
+
+<slot></slot>
+```
+
+Next, you would need to import the required functions and types from the Dialog-Kit within the component where you intend to use the dialog boxes or loaders.
 
 ```javascript
 import { DialogActions, DialogTypes, DialogTheme } from '@willog/dialog-kit';
 import { setLoader, resetLoader } from '@willog/dialog-kit';
 ```
+Then, you can use setLoader function to display loaders or dialog boxes based on certain conditions.
 
-Next, it is required to incorporate the Dialog component into your project. To do this, you should place it in the layout.svelte file which is located at the root directory of your project. This will ensure the component is readily available across your entire application.
+For instance, let's suppose you're making an HTTP request and based on the response status, you want to display a success or error dialog. Here's an example of how you could implement this:
 
 ```javascript
-  <script>
-      import {Dialog} from '@willog/dialog-kit'
-  </script>
-  
-  
-  <Dialog />
+import { onMount } from 'svelte';
+import { DialogTypes } from '@willog/dialog-kit';
+import { setLoader } from '@willog/dialog-kit';
 
-  <slot></slot>
+onMount(async () => {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    
+    if (response.status === 200) {
+      setLoader(true, undefined, undefined, {
+        type: DialogTypes.SUCCESS,
+        message: 'Data loaded successfully!'
+      });
+    } else {
+      setLoader(true, undefined, undefined, {
+        type: DialogTypes.ERROR,
+        message: 'Failed to load data.'
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
 ```
+
+In this example, we're displaying a success dialog if the response status is 200, otherwise, we're displaying an error dialog. The setLoader function is used to control the appearance and behavior of the dialogs.
 
 ### Displaying a Loader
 
@@ -77,16 +106,33 @@ setLoader(true, 'blue', 0.5);
 To display a dialog box, use the `setLoader` function with an object parameter to customize the dialog box:
 
 ```javascript
-setLoader(true, undefined, undefined, {
-  title: 'Error',
-  cancel: 'Cancel',
-  message: 'Something went wrong',
+setLoader(true, 'blue', 0.7, {
+  title: 'Sample Title',
+  cancel: 'Cancel Button Text',
+  message: 'This is your dialog message',
+  button: 'Confirm Button Text',
   theme: DialogTheme.DARK,
-  type: DialogTypes.ERROR,
+  confirmButton: 'Confirm',
+  middleButton: 'Maybe',
+  middleButtonColor: 'green',
+  confirmButtonColor: 'blue',
+  cancelButtonColor: 'red',
+  type: DialogTypes.SUCCESS,
+  verticalConfirm: true,
   [DialogActions.ONCLOSE]: () => {
     console.log('Dialog closed');
   },
+  [DialogActions.ONCONFIRM]: () => {
+    console.log('Dialog confirmed');
+  },
+  [DialogActions.ONMIDDLE]: () => {
+    console.log('Middle button clicked');
+  }
+   [DialogActions.ONCLICKOUTSIDE]: () => {
+    console.log('Clicked outside');
+  }
 });
+
 ```
 
 You can reset the loader and dialog box to their initial states with the `resetLoader` function:
@@ -114,6 +160,7 @@ resetLoader();
 - `[DialogActions.ONCLOSE]` (function): A function to execute when the dialog box is closed.
 - `[DialogActions.ONCONFIRM]` (function): A function to execute when the confirm button is clicked.
 - `[DialogActions.ONMIDDLE]` (function): A function to execute when the middle button is clicked.
+- `[DialogActions.ONCLICKOUTSIDE]` (function): A function to execute when a click outside is triggered.
 
 All properties are optional and have default values if not specified.
 
@@ -123,7 +170,8 @@ In this section, you will find visual examples of what you can create with `Dial
 
 ### Loaders
 
-![Loader Examples](https://github.com/LoganWillaumez/dialog-kit/assets/60406970/b7d6720a-af94-4404-b292-11318fa48ed7)
+
+<img src="https://github.com/LoganWillaumez/dialog-kit/assets/60406970/b7d6720a-af94-4404-b292-11318fa48ed7" width="250" height="250">
 
 Here are examples of loaders that you can display with `Dialog-Kit`. You can see default loaders, as well as loaders with custom colors and opacities.
 

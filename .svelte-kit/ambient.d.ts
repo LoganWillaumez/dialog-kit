@@ -51,6 +51,7 @@ declare module '$env/static/private' {
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const FIG_NEW_SESSION: string;
 	export const npm_package_scripts_prepublishOnly: string;
+	export const TF_SHELL: string;
 	export const SDKMAN_PLATFORM: string;
 	export const npm_package_exports___svelte: string;
 	export const npm_package_devDependencies__sveltejs_kit: string;
@@ -58,8 +59,11 @@ declare module '$env/static/private' {
 	export const LC_ALL: string;
 	export const PNPM_HOME: string;
 	export const POWERLINE_COMMAND: string;
+	export const TF_ALIAS: string;
+	export const TF_SHELL_ALIASES: string;
 	export const USER: string;
 	export const NVM_DIR: string;
+	export const PYTHONIOENCODING: string;
 	export const npm_package_description: string;
 	export const npm_package_license: string;
 	export const npm_package_scripts_check_watch: string;
@@ -203,6 +207,7 @@ declare module '$env/dynamic/private' {
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		FIG_NEW_SESSION: string;
 		npm_package_scripts_prepublishOnly: string;
+		TF_SHELL: string;
 		SDKMAN_PLATFORM: string;
 		npm_package_exports___svelte: string;
 		npm_package_devDependencies__sveltejs_kit: string;
@@ -210,8 +215,11 @@ declare module '$env/dynamic/private' {
 		LC_ALL: string;
 		PNPM_HOME: string;
 		POWERLINE_COMMAND: string;
+		TF_ALIAS: string;
+		TF_SHELL_ALIASES: string;
 		USER: string;
 		NVM_DIR: string;
+		PYTHONIOENCODING: string;
 		npm_package_description: string;
 		npm_package_license: string;
 		npm_package_scripts_check_watch: string;

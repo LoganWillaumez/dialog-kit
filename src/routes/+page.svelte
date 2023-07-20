@@ -13,6 +13,9 @@
             type: DialogTypes.INFO,
             message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae metus quis nisl rhoncus dapibus eu ac lacus",
             confirmButton: 'Confirm',
+            [DialogActions.ONCLICKOUTSIDE]() {
+                console.log('click outside');
+            },
             [DialogActions.ONCONFIRM]() {
                 console.log('confirm');
             },

@@ -5,6 +5,7 @@ import dialog_error from "../images/dialog_error.svg";
 import dialog_info from "../images/dialog_info.svg";
 import dialog_success from "../images/dialog_success.svg";
 import dialog_warning from "../images/dialog_warning.svg";
+import { clickOutside } from "../utils/clickOutside.js";
 const handleAction = (action) => {
   const fn = $loader.popUp[action];
   if (fn && typeof fn === "function") {
@@ -20,7 +21,8 @@ $:
 
 <div id="{$loader.popUp.message && 'overlay'}" />
 {#if $loader.showLoader}
-<div transition:fade={{ duration: 100 }} class="positioned">
+<div transition:fade={{ duration: 100 }} class="positioned" use:clickOutside
+on:clickOutside={() => handleAction(DialogActions.ONCLICKOUTSIDE)}>
   {#if $loader.popUp.message}
       <div class={`popup popup--${$loader.popUp.type} popup--${theme}`}>
         <header class="flex-center gap-10">
